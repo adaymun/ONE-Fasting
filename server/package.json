@@ -1,0 +1,14 @@
+{
+  "name": "one-intermittent-fasting-server",
+  "version": "1.0.0",
+  "description": "Server for ONE - Intermittent Fasting project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.0.0",
+    "mongoose": "^6.0.0"
+  }
+} 

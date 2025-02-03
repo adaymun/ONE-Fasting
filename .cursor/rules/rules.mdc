@@ -1,0 +1,129 @@
+---
+description: 
+globs: 
+---
+Below is a streamlined, detailed project structure that separates the frontend and backend while keeping things simple to implement. This structure is designed for a React client (using Create React App) and an Express/Node.js server. It also clearly separates the concerns for premium features like managing intermittent fasting. You can expand or simplify further based on your needs.
+
+---
+
+## Project Structure
+
+```plaintext
+ONE - Intermittent Fasting/
+├── README.md                   # Project overview, setup instructions, and usage
+├── .gitignore                  # Directories/files to ignore (like node_modules, .env)
+├── .env                        # Environment configuration (API keys, DB connection strings)
+├── client/                     # Frontend application (React)
+│   ├── package.json            # Frontend dependencies and scripts (e.g., using Create React App)
+│   ├── public/
+│   │   └── index.html          # HTML entry point for your React app
+│   └── src/
+│       ├── index.js            # React entry point (bootstraps App component)
+│       ├── App.js              # Main component with routing and layout
+│       ├── components/         # Reusable UI components
+│       │   ├── NavBar.js       # Navigation bar component (e.g., header with links)
+│       │   ├── Footer.js        # Common footer
+│       │   ├── FastingPlanCard.js  # Card component to display fasting plan summaries
+│       │   └── PremiumFeature.js   # Component(s) for displaying premium health analytics/features
+│       ├── pages/              # Page-level components used with routing
+│       │   ├── Home.js         # Landing/home page showing an overview of the app
+│       │   ├── Profile.js      # User profile page where personal data is shown/edited
+│       │   ├── FastingPlan.js  # Detailed intermittent fasting plan page
+│       │   └── Premium.js      # Page dedicated to premium features and analytics
+│       ├── services/           # API logic to interact with the server
+│       │   └── apiService.js   # Centralized API calls (GET, POST, etc.) for separation of concerns
+│       └── styles/             # Global CSS or SCSS styling
+│           └── App.css         # Main stylesheet
+└── server/                     # Backend application (Express/Node.js)
+    ├── package.json            # Backend dependencies and scripts
+    ├── app.js                  # Main Express app setup (middleware, routes, error handlers)
+    ├── config/                 
+    │   └── db.js               # Database connection configuration (e.g., MongoDB, Postgres)
+    ├── controllers/            # Business logic for each route
+    │   ├── authController.js   # Manages authentication (login, registration)
+    │   └── fastingController.js# Handles fasting plan logic and premium feature endpoints
+    ├── models/                 # Data models (using Mongoose, Sequelize, etc.)
+    │   ├── User.js             # User schema/model; stores user credentials and profile data
+    │   └── FastingPlan.js      # Schema/model for intermittent fasting plans
+    ├── routes/                 # API route definitions mapping URLs to controller actions
+    │   ├── authRoutes.js       # Routes concerning user authentication
+    │   └── fastingRoutes.js    # Routes for intermittent fasting and premium features
+    └── middleware/             # Custom middleware modules
+        └── authMiddleware.js   # Middleware for protecting routes (authentication, authorization)
+```
+
+---
+
+## Explanation of Key Sections
+
+### Root Directory
+- **README.md**  
+  Contains a summary of your project, installation instructions, and other relevant documentation.
+  
+- **.gitignore**  
+  Lists files/folders to exclude from version control (e.g., `node_modules/`, `.env`).
+
+- **.env**  
+  Stores sensitive configuration details such as database connection URLs and API keys.
+
+### Client (Frontend)
+- **public/**  
+  Stores static files such as your `index.html` (the single HTML file where your React app is bootstrapped).
+
+- **src/index.js**  
+  The React entry point. This file renders the `<App />` component into the DOM.
+
+- **src/App.js**  
+  The highest-level component that can include routing (using libraries like React Router) and layout for your application.
+
+- **src/components/**  
+  Contains reusable UI pieces like `NavBar`, `Footer`, and specialized components such as `FastingPlanCard` and `PremiumFeature` that encapsulate the UI logic for premium features.
+
+- **src/pages/**  
+  Contains route-level components that serve as full pages (e.g., Home, Profile, FastingPlan, Premium). Each page can import common components as needed.
+
+- **src/services/apiService.js**  
+  Contains functions to handle API calls to your backend. This separation keeps your UI code clean and makes it easier to manage AJAX requests.
+
+- **src/styles/App.css**  
+  Holds global styling rules applied throughout your React application.
+
+### Server (Backend)
+- **app.js**  
+  The main file that sets up your Express app. This includes connecting middleware (like JSON parser, CORS), plugging in your API routes, and setting up error handling.
+
+- **config/db.js**  
+  Configures and initializes the connection to your database (such as MongoDB or PostgreSQL).
+
+- **controllers/**  
+  Contains code that implements the business logic of your API endpoints.  
+  - `authController.js`: Manages user authentication logic (login, registration).  
+  - `fastingController.js`: Handles operations related to intermittent fasting plans and premium features.
+
+- **models/**  
+  Defines the data models for your application. These can be Mongoose schemas, Sequelize models, etc.  
+  - `User.js`: Schema/model for user data.  
+  - `FastingPlan.js`: Schema/model for intermittent fasting plan details.
+
+- **routes/**  
+  Contains files that map HTTP endpoints to specific controller functions.  
+  - `authRoutes.js`: Routes that handle user authentication endpoints.  
+  - `fastingRoutes.js`: Routes that manage endpoints related to fasting plans and premium features.
+
+- **middleware/authMiddleware.js**  
+  Custom middleware functions to check for authentication and protect sensitive routes.
+
+---
+
+## Getting Started
+
+1. **Frontend:**  
+   - Navigate to the `client/` directory and run `npm install` to install dependencies.  
+   - Use `npm start` to launch the React development server.
+
+2. **Backend:**  
+   - Navigate to the `server/` directory and run `npm install` to install the required packages.  
+   - Start your server via `npm start` or `node app.js`.  
+   - Make sure your `.env` file is properly configured (e.g., database URLs, secret keys).
+
+This structure keeps things clear, modular, and easy to manage while also being flexible enough to grow with more advanced features as your health web app evolves. Happy coding!
